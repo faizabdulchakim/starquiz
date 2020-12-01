@@ -1,6 +1,12 @@
+import persegi from "../images/persegi.png";
+import segitiga from "../images/segitiga.png";
+import lingkaran from "../images/lingkaran.png";
+import bintang from "../images/bintang.png";
+
+
 export const quiz_bank  = [
     {"question":"(0) Dibawah ini adalah gambar?",
-    "question_image":require("../images/lingkaran.png"),
+    "question_image":lingkaran,
     "type":"multiple_choice",
       "options":[
         "Persegi",
@@ -41,10 +47,10 @@ export const quiz_bank  = [
     {"question":"(3) yang manakah gambar lingkaran?",
     "type":"multiple_choice",
       "options":[
-        require("../images/persegi.png"),
-        require("../images/segitiga.png"),
-        require("../images/lingkaran.png"),
-        require("../images/bintang.png")
+        persegi,
+        segitiga,
+        lingkaran,
+        bintang
     ],
     "answer":2,
     "numbering":3,
@@ -54,7 +60,7 @@ export const quiz_bank  = [
     },
 
     {"question":"(4) Dibawah ini adalah gambar?",
-    "question_image":require("../images/lingkaran.png"),
+    "question_image":lingkaran,
     "type":"multiple_choice",
       "options":[
         "Persegi",
@@ -94,10 +100,10 @@ export const quiz_bank  = [
     {"question":"(7) yang manakah gambar lingkaran?",
     "type":"multiple_choice",
       "options":[
-        require("../images/persegi.png"),
-        require("../images/segitiga.png"),
-        require("../images/lingkaran.png"),
-        require("../images/bintang.png")
+        persegi,
+        segitiga,
+        lingkaran,
+        bintang
     ],
     "answer":2,
     "numbering":7,
@@ -107,7 +113,7 @@ export const quiz_bank  = [
     },
 
     {"question":"(8) Dibawah ini adalah gambar?",
-    "question_image":require("../images/lingkaran.png"),
+    "question_image":lingkaran,
     "type":"multiple_choice",
       "options":[
         "Persegi",

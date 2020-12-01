@@ -13,7 +13,7 @@ const styles = theme => ({
     paper: {
         height: 140,
         width: '100%',
-        background:'green'
+        background:'white'
     },
     red_:{
         background:'red'
@@ -25,7 +25,7 @@ class Landing extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-            quiz_title:'QUIZKU',
+            quiz_title:'Star Quiz',
             number_question:10,
             max_score:100
 		};
