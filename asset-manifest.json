@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/starquiz/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/starquiz/static/js/main.bb61a3c8.chunk.js",
-    "main.js.map": "/starquiz/static/js/main.bb61a3c8.chunk.js.map",
+    "main.js": "/starquiz/static/js/main.5ba5e382.chunk.js",
+    "main.js.map": "/starquiz/static/js/main.5ba5e382.chunk.js.map",
     "runtime-main.js": "/starquiz/static/js/runtime-main.c909a05f.js",
     "runtime-main.js.map": "/starquiz/static/js/runtime-main.c909a05f.js.map",
     "static/js/2.369cb15b.chunk.js": "/starquiz/static/js/2.369cb15b.chunk.js",
@@ -12,13 +12,15 @@
     "index.html": "/starquiz/index.html",
     "static/css/main.6dea0f05.chunk.css.map": "/starquiz/static/css/main.6dea0f05.chunk.css.map",
     "static/js/2.369cb15b.chunk.js.LICENSE.txt": "/starquiz/static/js/2.369cb15b.chunk.js.LICENSE.txt",
+    "static/media/harimau.2eaff238.jpg": "/starquiz/static/media/harimau.2eaff238.jpg",
     "static/media/landing_bg.f807e418.gif": "/starquiz/static/media/landing_bg.f807e418.gif",
+    "static/media/sepatu.be1b0b40.jpg": "/starquiz/static/media/sepatu.be1b0b40.jpg",
     "static/media/star.96819c09.png": "/starquiz/static/media/star.96819c09.png"
   },
   "entrypoints": [
     "static/js/runtime-main.c909a05f.js",
     "static/js/2.369cb15b.chunk.js",
     "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.bb61a3c8.chunk.js"
+    "static/js/main.5ba5e382.chunk.js"
   ]
 }
