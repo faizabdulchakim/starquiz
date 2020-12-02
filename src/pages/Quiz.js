@@ -514,7 +514,7 @@ class Quiz extends React.Component {
                       {/*<Typography>{this.state.rs_statement}</Typography>*/}
                       <Typography variant="h5" gutterBottom>Nilai Kamu: {this.state.real_score}</Typography>
                       <Typography variant="h5" gutterBottom>Jumlah Jawaban Benar: {this.state.score}</Typography>
-                      <Typography variant="h5" gutterBottom>Jumlah Jawaban Salah: {5-parseInt(this.state.score)}</Typography>
+                      <Typography variant="h5" gutterBottom>Jumlah Jawaban Salah: {10-parseInt(this.state.score)}</Typography>
                     </Box>
                   :
                   null
@@ -592,7 +592,7 @@ const database = [
     "max_retry":1,
     "max_score":100,
     "min_score":0,
-    "number_of_question":5,
+    "number_of_question":10,
     "list_question":[]
     }
   ]
