@@ -1,7 +1,10 @@
 import React from 'react';
-import {Container,Box,Paper, Button,Typography,FormControlLabel,Checkbox,RadioGroup,Radio,TextField} from '@material-ui/core/';
+import {Container,Box,Paper, Button,Typography,FormControlLabel,Checkbox,RadioGroup,Radio,TextField,Grid} from '@material-ui/core/';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
+import BackgroundHeader from "../images/star.png";
+import { Helmet } from 'react-helmet';
+
 import {
     BrowserRouter as Router,
     Switch,
@@ -12,13 +15,12 @@ import {quiz_bank} from "../questions/Quiz_bank";
 
 const styles = theme => ({
     paper: {
-        height: 140,
-        width: '100%'
-    },
-    title: {
-        fontSize: 14,
-        textAlign:'center'
-    },
+      height: "97%",
+      width: '100%',
+      marginTop:'1%',
+      backgroundImage:'url('+ BackgroundHeader+')',
+      backgroundSize: 'cover'
+    }
 });
 
 class Quiz extends React.Component {
@@ -244,7 +246,7 @@ class Quiz extends React.Component {
     //nomor soal terakir, jawaban benar. maka tombol submit diubah jadi tombol lihat hasil.
       if(this.state.left_question<1){
         next_btn = "result";
-        msg = "Selesai";
+        msg = "Selesai 😊 kamu telah mengerjakan semua soal";
       }
     
     
@@ -320,13 +322,7 @@ class Quiz extends React.Component {
     });
   }
 
-  showresult(){
-    alert("show result")
-  }
-
-  backtohome(){
-    alert("back to home");
-  }
+  
 
   showresult(){
     var num_question        = this.state.questions.list_question.length;
@@ -364,8 +360,17 @@ class Quiz extends React.Component {
       }
     const { classes } = this.props;
 		return(
-            <Container>
-                <Paper className={classes.paper}>
+          <Container  style={{height:window.innerHeight,overflow:'hidden'}}>
+            <Helmet>
+                <title>Star Quiz</title>
+                </Helmet>
+                
+                <Box className={classes.paper} >
+                  <Box >
+                    <Box style={{width:100,height:45,marginTop:5,marginRight:5,borderRadius:5,backgroundColor:'white',float:'right',textAlign:'center'}}>
+                      <Typography variant="h6" gutterBottom style={{lineHeight:'40px'}}>Scor: {this.state.real_score}</Typography>
+                    </Box>
+                  </Box>
                 {
                   this.state.rs_statement==""?
                   this.state.questions.list_question.map((x,index_)=>{
@@ -374,16 +379,17 @@ class Quiz extends React.Component {
                           parseInt(x.numbering)==parseInt(this.state.current_number) ?                
                           <Box >
                               {/*question*/}
-                              <Paper>
-                                <Typography className={classes.title} color="textSecondary" gutterBottom>
+                                <Box style={{paddingTop:50,textAlign:'center'}}>
+                                <Typography variant="h5" gutterBottom>
                                 {index_+1}. {x.question} 
                                 </Typography>
-                              </Paper>
-
+                                </Box>
                               {
                                 /*questions image*/
                                 x.question_image!==undefined?
+                                <Box style={{textAlign:'center'}}>
                                 <img src={x.question_image}  />
+                                </Box>
                                 :
                                 null
                               }
@@ -392,16 +398,20 @@ class Quiz extends React.Component {
                               <Box style={{marginTop:10}}>
                               </Box>
                               
+
+                              <Grid item xs={12}>
+                              <Grid container justify="center"  >
                               {
                                 /*multiple choice options*/
                                 x.type=="multiple_choice"?
                                 x.options.map((z,index)=>{
                                   return (
-                                    
                                     <Box>
-                                      <RadioGroup aria-label="gender" name="gender1" value={"male"}  >
                                       {
                                         z.includes("data:image/")?
+                                        <Grid item style={{margin:10}}>
+                                          <Paper>
+                                          <Box style={{margin:10}}>
                                         <FormControlLabel
                                         onChange={() => {
                                           x.truefalse=="notyet"||(x.truefalse==false&&x.next_retry>0)?
@@ -412,7 +422,13 @@ class Quiz extends React.Component {
                                         control={<Checkbox checked={this.state.selectedoption==index ? true : false}  />}
                                         label={<img src={z}  />}
                                         />
+                                        </Box>
+                                        </Paper>
+                                        </Grid>
                                         :
+                                        <Grid item style={{margin:10}}>
+                                          <Paper>
+                                            <Box style={{margin:10}}>
                                         <FormControlLabel
                                         onChange={() => {
                                           x.truefalse=="notyet"||(x.truefalse==false&&x.next_retry>0)?
@@ -423,14 +439,10 @@ class Quiz extends React.Component {
                                         control={<Checkbox checked={this.state.selectedoption==index ? true : false}  />}
                                         label={z}
                                         />
+                                        </Box>
+                                        </Paper>
+                                        </Grid>
                                       }
-                                      
-
-                                      </RadioGroup>
-
-
-
-                                      
                                     </Box>
                                   )
                                 })
@@ -441,7 +453,8 @@ class Quiz extends React.Component {
                               {
                                 /*Box input for  fill_in_the_blank question*/
                                 x.type=="fill_in_the_blank"?
-                                <TextField id="outlined-basic"  variant="outlined" value={this.state.buff_answer}
+                                <Grid item>
+                                <TextField id="outlined-basic" style={{backgroundColor:'white'}}  variant="outlined" value={this.state.buff_answer}
                                 onChange={(e) => {
                                   x.truefalse=="notyet"||(x.truefalse==false&&x.next_retry>0)?
                                   this.setState({"buff_answer":e.target.value})
@@ -449,9 +462,15 @@ class Quiz extends React.Component {
                                   this.setState({"buff_answer":this.state.buff_answer})
                                 }}
                                 />
+                                </Grid>
                                 :
                                 null
                               }
+
+                              </Grid>
+                              </Grid>
+
+                              
 
                             {
                               /*space*/
@@ -461,7 +480,7 @@ class Quiz extends React.Component {
                             {
                               this.state.review_answer==true?
                               <Box>
-                              <Box >{x.truefalse==true?'Benar':'Salah'}</Box>
+                              <Typography variant="h6" gutterBottom>{x.truefalse==true?'Benar':'Salah'}</Typography>
                               </Box>
                               :
                               null
@@ -480,7 +499,9 @@ class Quiz extends React.Component {
 
                 {
                   this.state.false_message!=""&&this.state.rs_statement==""&&this.state.review_answer==false?
-                  <Typography >{this.state.false_message}</Typography>
+                  <Box style={{textAlign:'center'}}>
+                  <Typography variant="h6" gutterBottom>{this.state.false_message}</Typography>
+                  </Box>
                   :
                   null
                 }
@@ -489,9 +510,11 @@ class Quiz extends React.Component {
                   /*test result area (panel)*/
                   this.state.rs_statement!=""?
                     
-                    <Box>
-                      <Typography>{this.state.rs_statement}</Typography>
-                      <Typography>Nilai Kamu: {this.state.real_score}</Typography>
+                    <Box style={{textAlign:'center',paddingTop:150}}>
+                      {/*<Typography>{this.state.rs_statement}</Typography>*/}
+                      <Typography variant="h5" gutterBottom>Nilai Kamu: {this.state.real_score}</Typography>
+                      <Typography variant="h5" gutterBottom>Jumlah Jawaban Benar: {this.state.score}</Typography>
+                      <Typography variant="h5" gutterBottom>Jumlah Jawaban Salah: {5-parseInt(this.state.score)}</Typography>
                     </Box>
                   :
                   null
@@ -500,9 +523,11 @@ class Quiz extends React.Component {
                 {
                   /*tombol submit, muncul ketika masih punya kesempatan menjawab*/
                   this.state.submit_btn=="submit"&&this.state.review_answer==false?
-                  <Button   onClick={()=>this.submitAnswer()} >
+                  <Box style={{textAlign:'center'}}>
+                  <Button style={{backgroundColor:'purple',width:100,color:'white'}}   onClick={()=>this.submitAnswer()} >
                     Submit
                   </Button>
+                  </Box>
                   :
                   null
                 }
@@ -510,9 +535,11 @@ class Quiz extends React.Component {
                 {
                   /*next button, muncul ketika kesempatan menjawab habis atau jawaban benar*/
                   this.state.submit_btn=="next"||this.state.review_answer==true?
-                  <Button  onClick={()=>this.next()} >
+                  <Box style={{textAlign:'center',paddingTop:10}}>
+                  <Button  style={{backgroundColor:'purple',width:100,color:'white'}} onClick={()=>this.next()} >
                     Lanjut
                   </Button>
+                  </Box>
                   :
                   null
                 }
@@ -520,9 +547,9 @@ class Quiz extends React.Component {
                 {
                   /*show result button*/
                   this.state.submit_btn=="result"&&this.state.review_answer==false?
-                    <Box>
+                    <Box style={{textAlign:'center'}}>
                       
-                      <Button   onClick={()=>this.showresult()} >
+                      <Button style={{backgroundColor:'purple',width:200,color:'white'}}  onClick={()=>this.showresult()} >
                         Lihat Hasil
                       </Button>
                     </Box>
@@ -531,15 +558,19 @@ class Quiz extends React.Component {
                 }
 
                 {
-                  this.state.submit_btn=="back"||this.state.review_answer==true?  
-                    <Button   onClick={()=>this.backtohome()} >
-                    HOME
-                    </Button >
+                  this.state.submit_btn=="back"||this.state.review_answer==true?
+                    <Box style={{textAlign:'center',marginTop:30}}>
+                    <Link to="/" style={{textDecoration:'none'}}>
+                      <Button style={{backgroundColor:'purple',width:200,color:'white'}} >
+                      Kembali
+                      </Button >
+                    </Link>
+                    </Box>
                   :
                     null
                 }
 
-                </Paper>
+                </Box>
             </Container>
         )
   }
